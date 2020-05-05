@@ -8,13 +8,14 @@ clear all
 clc
 close all
 
-%PARAMETERS
-iter = 100;
-set(0, 'DefaultTextInterpreter', 'none')
-set(0, 'DefaultAxesTickLabelInterpreter', 'none')
 
 %INPUT FILE:
+
 filename = 'all conserved hbox 040420.xlsx'; % Input excel sheet should have cells (rows) x genes (columns) with headers and row-names
+
+
+%READING FILE
+
 table=readtable(filename);
 T=table2array(table(:,2:end));
 tf_names=table.Properties.VariableNames(2:end);
@@ -25,6 +26,7 @@ neurons=table2array(table(:,1));
 % IDENTIFY UNIQUE NEURONS --- if the input table includes neurons that are
 % indistinguishable by genetic expression, only the unique ones will be
 % kept
+
 [a,b,c]=unique(T,'rows','legacy');
 T = T(b,:);
 neurons=neurons(b);
@@ -35,6 +37,9 @@ neurons=neurons(b);
 Topt=T(:,indices); %retreiving the minimal set of genes necessary for identity
 tf_names_opt=tf_names(indices); %retreiving the minimal set of genes necessary for identity
 
+
+
+% VISUALIZATION
 
 % display minimal codebook
 figure('units','normalized','outerposition',[0 0 1 1])
@@ -57,7 +62,7 @@ h=heatmap(corr(Topt,T));
 h.Colormap=colormap('jet');
 h.XDisplayLabels=tf_names;
 h.YDisplayLabels=tf_names_opt;
-title('Minimal codebook vs. all genes correlation')
+title('Minimal codebook vs. all genes (binary correlation)')
 
 % WRITE RESULTS TO FILES
 
