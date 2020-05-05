@@ -18,6 +18,8 @@ filename = 'all conserved hbox 040420.xlsx'; % Input excel sheet should have cel
 table=readtable(filename);
 T=table2array(table(:,2:end));
 tf_names=table.Properties.VariableNames(2:end);
+tf_names=strrep(tf_names,'_','-');
+tf_names=cellfun(@(x) ['{\it ' x '}'], tf_names, 'UniformOutput', false);
 neurons=table2array(table(:,1));
 
 % IDENTIFY UNIQUE NEURONS --- if the input table includes neurons that are
@@ -63,5 +65,5 @@ writetable(cell2table(tf_names_opt'),'minimal_gene_set.csv');
 Tmin(:,1)=array2table(neurons);
 Tmin=[Tmin array2table(Topt)];
 Tmin.Properties.VariableNames(1)={'neurons'};
-Tmin.Properties.VariableNames(2:end)=tf_names_opt;
+Tmin.Properties.VariableNames(2:end)=matlab.lang.makeValidName(tf_names_opt);
 writetable(Tmin,'minimal_codebook.xlsx');
