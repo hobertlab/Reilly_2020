@@ -1,0 +1,25 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf600
+{\fonttbl\f0\fswiss\fcharset0 ArialMT;}
+{\colortbl;\red255\green255\blue255;\red24\green25\blue27;\red255\green255\blue255;\red0\green0\blue0;
+}
+{\*\expandedcolortbl;;\cssrgb\c12549\c12941\c14118;\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c0\c0;
+}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs26 \cf2 \cb3 \expnd0\expndtw0\kerning0
+Jaccard.Distance function creates a distance matrix for a genes by their neuronal expression or neurons by their gene expression.\
+\
+In order to use it to get a dendrograms\'a0of genes by\'a0similar neuron expression, you input your binary gene by neuron expression matrix where row names = genes and column names = neurons.\
+\
+Input the column in which the binary data starts (use 1 if a binary matrix as described above).\cf0 \cb1 \
+\
+\cf2 \cb3 The function\'a0then creates two matrices one of shared genes and one of unshared genes. These matrices are then used to calculate Jaccard similarity as the shared genes matrix divided by the sum of the shared and unshared gene matrices.\
+\
+Then it calculates the Jaccard distance matrix as the Jaccard similarity matrix subtracted from one.  \
+\
+This distance matrix can then be saved to .csv or used to cluster gene by their similar neuronal expression using the base hclust() and plot() functions.\
+\
+In order to create dendrograms of neurons by similar gene expression transpose your original matrix so (row names = neurons, column names = genes).\
+}
